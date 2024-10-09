@@ -1,45 +1,48 @@
+<?php
+use Controller\categoryController\CategoryC;
+$controller = new CategoryC();  // Asumiendo que el nombre de la clase es CategoryC
+$categories = $controller->showCategoryC();
+$Cont = 0;
+
+?>
+
 <header class="container-fluid bg-white">
 
     <div class="container px-0 menuContainer">
         <nav class="navbar navbar-expand-xl navbar-light align-items-end p-xl-0">
-            <a class="navbar-brand d-none" href="index.html">
-                <img src="https://runyoursite.in/wp-content/uploads/2020/02/runyoursite-logo.png" width="180px"
-                    class="img-fluid">
-            </a>
+
 
             <a href="#mobileMenu" id="mobileBar" class="d-none ml-auto"> <i class="fa fa-bars"></i></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-md-auto justify-content-between" id="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Inicio</a>
+                        <a class="nav-link" href="?action=home">Inicio</a>
                     </li>
                     <li class="nav-item dd">
                         <a class="nav-link" href="about.html">Categorias</a>
                         <ul class="list-unstyled dropdownMenu">
+                            <?php
+
+                            if (!empty($categories)) {
+
+                                foreach ($categories as $category) {
+                                    if ($Cont < 5) {
+                                        echo "<li class='nav-item dd list-group-item'>
+                                         <a href='?action={$category['CATEGORIA']}'>{$category['CATEGORIA']}</a>
+                                       </li>";
+                                        $Cont++;
+                                    }
+                                }
+                            }
+                            ?>
                             <li class="nav-item dd">
-                                <a href="">electronicos</a>
+                                <a href="?action=products">más categorias</a>
                             </li>
-                            <li>
-                                <a href="">hogar</a>
-                            </li>
-                            <li>
-                                <a href="">Ropa</a>
-                            </li>
-                            <li>
-                                <a href="">Vehiculos</a>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="#">Programs</a>
-                        <ul class="list-unstyled dropdownMenu">
-                            <li>
-                                <a href="toddlers.html">Toddlers</a>
-                            </li>
-                            <li>
-                                <a href="preschool.html">Preschool</a>
-                            </li>
-                        </ul>
+                        <a class="nav-link" href="?action=orders">pedidos</a>
                     </li>
                     <li class="nav-item dd">
                         <a class="nav-link" href="#">Curriculum </a>
@@ -81,7 +84,7 @@
                         </ul>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="contact-us.html">Iniciar sesion</a>
+                        <a class="nav-link" href="?action=login">Iniciar sesion</a>
                     </li>
                 </ul>
             </div>
