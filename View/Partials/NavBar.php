@@ -36,7 +36,7 @@ $Cont = 0;
                             }
                             ?>
                             <li class="nav-item dd">
-                                <a href="?action=products">más categorias</a>
+                                <a href="?action=CatMain">más categorias</a>
                             </li>
                            
                         </ul>

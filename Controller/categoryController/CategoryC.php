@@ -14,8 +14,8 @@ class CategoryC
 
     public function showSubCategoryC()
     {
-
-        $Sub = Category::ShowSubCategory();
+        $CategoryGet = $_GET['category'];
+        $Sub = Category::ShowSubCategory($CategoryGet);
         return $Sub;
     }
 }

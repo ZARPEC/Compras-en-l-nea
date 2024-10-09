@@ -6,29 +6,67 @@ $SubCategories = $controller->showSubCategoryC();
 $blockSize = 5;
 $totalSubC = count($SubCategories);
 $first = true;
-
+$CategoryGet = $_GET['category'];
 ?>
 <style>
-        .category-circle {
-            width: 100px;
-            height: 100px;
-            background-color: #17A2B8;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
-        .category-circle img {
-            width: 60px;
-            height: auto;
-        }
-        .category-text {
-            text-align: center;
-            font-size: 14px;
-        }
-    </style>
+    .category-circle {
+        width: 100px;
+        height: 100px;
+        background-color: #17A2B8;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
 
+    .category-circle img {
+        width: 60px;
+        height: auto;
+    }
+
+    .category-text {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .custom-prev,
+    .custom-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Fondo semitransparente */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custom-prev {
+        left: -60px;
+        /* Ajusta esta distancia para separar la flecha del primer elemento */
+    }
+
+    .custom-next {
+        right: -60px;
+        /* Ajusta esta distancia para separar la flecha del último elemento */
+    }
+
+    .custom-prev:hover,
+    .custom-next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        /* Color más oscuro al pasar el mouse */
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+    }
+</style>
 <div class="container mt-5">
     <div class="row">
         <!-- Sidebar de categorías -->
@@ -43,92 +81,57 @@ $first = true;
                     }
                 }
                 ?>
-
             </ul>
         </div>
-        <!-- espacio para mostrar subcategorias -->
 
-        <!-- Sección de productos -->
+        <!-- Contenedor de subcategorías y productos -->
         <div class="col-md-9">
-
-            <!--seccion de subcategorias -->
-            <div class="container mt-5">
-                <h2 class="mb-4">Electrónicos</h2>
-                <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Sección de subcategorías -->
+            <div class="container mb-4 w-75">
+                <h2 class="mb-4"><?php echo "{$CategoryGet}";?></h2>
+                <div id="categoryCarousel" class="carousel slide" data-bs-ride="carouse">
                     <div class="carousel-inner">
-                        <!-- Grupo 1 de categorías -->
-
                         <?php
-                for ($i = 0; $i < $totalSubC; $i += $blockSize) {
-                    // Este segundo for se asegura de imprimir solo hasta 5 o los elementos que queden
-                    for ($j = $i; $j < $i + $blockSize && $j < $totalSubC; $j++) {
-                        if ($first == true){
-                            echo "<div class='carousel-item active'>"; 
-                            $first = false;
-                        }else{
-                            echo "<div class='carousel-item '>";
+                        for ($i = 0; $i < $totalSubC; $i += $blockSize) {
+                            if ($first == true) {
+                                echo "<div class='carousel-item active'>";
+                                $first = false;
+                            } else {
+                                echo "<div class='carousel-item'>";
+                            }
+                            echo "<div class='row'>";
+                            for ($j = $i; $j < $i + $blockSize && $j < $totalSubC; $j++) {
+                                echo "
+                                <div class='col text-center'>
+                                    <div class='col rounded'>
+                                        <div class='category-circle'>
+                                            <img src='Assets/Img/Category/SubCategory/Electronicos/{$SubCategories[$j]['NSUBCATEGORIA']}.png' alt='Subcategoría'>
+                                        </div>
+                                        <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
+                                    </div>
+                                </div>
+                                ";
+                            }
+                            echo "</div>"; // Cierra el row
+                            echo "</div>"; // Cierra el carousel-item
                         }
-                        echo "
-                        
-                            <div class='row text-center'>
-                                <div class='col-2 rounded '>
-                                    <div class='category-circle'>
-                                        <img src='https://via.placeholder.com/80' alt='Audio'>
-                                    </div>
-                                    <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
-                                </div>
-                                <div class='col-2'>
-                                    <div class='category-circle'>
-                                        <img src='https://via.placeholder.com/80' alt='Impresoras'>
-                                    </div>
-                                    <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
-                                </div>
-                                <div class='col-2'>
-                                    <div class='category-circle'>
-                                        <img src='https://via.placeholder.com/80' alt='Redes'>
-                                    </div>
-                                    <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
-                                </div>
-                                <div class='col-2'>
-                                    <div class='category-circle'>
-                                        <img src='https://via.placeholder.com/80' alt='Smartwatch'>
-                                    </div>
-                                    <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
-                                </div>
-                                <div class='col-2'>
-                                    <div class='category-circle'>
-                                        <img src='https://via.placeholder.com/80' alt='Smart Home'>
-                                    </div>
-                                    <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
-                                </div>
-                            </div>
-                        </div>
-";
-                    }
-                    echo "</ul>";
-                }
-                ?>
-
+                        ?>
                     </div>
-
                     <!-- Controles de carrusel -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel"
+                    <button class="carousel-control-prev custom-prev" type="button" data-bs-target="#categoryCarousel"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Anterior</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel"
+                    <button class="carousel-control-next custom-next" type="button" data-bs-target="#categoryCarousel"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Siguiente</span>
                     </button>
                 </div>
             </div>
-            <!--fin seccion subcategorias-->
 
-
-
-            <!--seccion de productos-->
+            <!-- Sección de productos -->
             <h5>Productos</h5>
             <div class="row">
                 <!-- Producto 1 -->
@@ -181,7 +184,6 @@ $first = true;
                     </div>
                 </div>
 
-
                 <!-- Producto 5 -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
@@ -206,7 +208,6 @@ $first = true;
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
+        </div> <!-- Fin de la columna de productos/subcategorías -->
+    </div> <!-- Fin del row -->
+</div> <!-- Fin del container -->
