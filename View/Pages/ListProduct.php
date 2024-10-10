@@ -3,10 +3,10 @@ use Controller\categoryController\CategoryC;
 $controller = new CategoryC();  // Asumiendo que el nombre de la clase es CategoryC
 $categories = $controller->showCategoryC();
 $SubCategories = $controller->showSubCategoryC();
-$blockSize = 5;
 $totalSubC = count($SubCategories);
 $first = true;
 $CategoryGet = $_GET['category'];
+$blockSize = 5;
 ?>
 <style>
     .category-circle {
@@ -77,7 +77,7 @@ $CategoryGet = $_GET['category'];
                 if (!empty($categories)) {
                     foreach ($categories as $category) {
                         echo "<li class='list-group-item'>
-                                    <a href='?action={$category['CATEGORIA']}'>{$category['CATEGORIA']}</a></li>";
+                                    <a href='?action=products&category={$category['CATEGORIA']}'>{$category['CATEGORIA']}</a></li>";
                     }
                 }
                 ?>
@@ -105,7 +105,7 @@ $CategoryGet = $_GET['category'];
                                 <div class='col text-center'>
                                     <div class='col rounded'>
                                         <div class='category-circle'>
-                                            <img src='Assets/Img/Category/SubCategory/Electronicos/{$SubCategories[$j]['NSUBCATEGORIA']}.png' alt='Subcategoría'>
+                                            <img src='Assets/Img/Category/SubCategory/{$CategoryGet}/{$SubCategories[$j]['NSUBCATEGORIA']}.png' alt='Subcategoría'>
                                         </div>
                                         <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
                                     </div>

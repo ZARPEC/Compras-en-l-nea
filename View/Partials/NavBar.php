@@ -4,6 +4,7 @@ $controller = new CategoryC();  // Asumiendo que el nombre de la clase es Catego
 $categories = $controller->showCategoryC();
 $Cont = 0;
 
+
 ?>
 
 <header class="container-fluid bg-white">
@@ -19,7 +20,7 @@ $Cont = 0;
                         <a class="nav-link" href="?action=home">Inicio</a>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="about.html">Categorias</a>
+                        <a class="nav-link" href="?action=CatMain" >Categorias</a>
                         <ul class="list-unstyled dropdownMenu">
                             <?php
 
@@ -28,7 +29,7 @@ $Cont = 0;
                                 foreach ($categories as $category) {
                                     if ($Cont < 5) {
                                         echo "<li class='nav-item dd list-group-item'>
-                                         <a href='?action={$category['CATEGORIA']}'>{$category['CATEGORIA']}</a>
+                                         <a href='?action=products&category={$category['CATEGORIA']}'>{$category['CATEGORIA']}</a>
                                        </li>";
                                         $Cont++;
                                     }
@@ -45,7 +46,7 @@ $Cont = 0;
                         <a class="nav-link" href="?action=orders">pedidos</a>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="#">Curriculum </a>
+                        <a class="nav-link" href="#">elemento </a>
                         <ul class="list-unstyled dropdownMenu">
                             <li>
                                 <a href="play-based-learning.html">Play-Based Learning</a>
@@ -59,7 +60,7 @@ $Cont = 0;
                         </ul>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="#">Parent Corner </a>
+                        <a class="nav-link" href="#"> elemento </a>
                         <ul class="list-unstyled dropdownMenu">
                             <li>
                                 <a href="nutrition.html">Nutrition</a>
@@ -73,7 +74,7 @@ $Cont = 0;
                         </ul>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="#">Photo Gallery </a>
+                        <a class="nav-link" href="#">elemento</a>
                         <ul class="list-unstyled dropdownMenu">
                             <li>
                                 <a href="bhnM-mississauga.html">BH‘n’M - Mississauga</a>
