@@ -1,12 +1,18 @@
 <?php
 use Controller\categoryController\CategoryC;
-$controller = new CategoryC();  // Asumiendo que el nombre de la clase es CategoryC
-$categories = $controller->showCategoryC();
-$SubCategories = $controller->showSubCategoryC();
+use Controller\ProductController\Product;
+$controllerCat = new CategoryC();  // Asumiendo que el nombre de la clase es CategoryC
+$controllerProd = new Product();
+$categories = $controllerCat->showCategoryC();
+$SubCategories = $controllerCat->showSubCategoryC();
 $totalSubC = count($SubCategories);
 $first = true;
 $CategoryGet = $_GET['category'];
 $blockSize = 5;
+
+$blockSizeProd = 3;
+$produ = $controllerProd->ShowProduct();
+$totalProd = count($produ);
 ?>
 <style>
     .category-circle {
@@ -88,7 +94,7 @@ $blockSize = 5;
         <div class="col-md-9">
             <!-- Sección de subcategorías -->
             <div class="container mb-4 w-75">
-                <h2 class="mb-4"><?php echo "{$CategoryGet}";?></h2>
+                <h2 class="mb-4"><?php echo "{$CategoryGet}"; ?></h2>
                 <div id="categoryCarousel" class="carousel slide" data-bs-ride="carouse">
                     <div class="carousel-inner">
                         <?php
@@ -102,11 +108,14 @@ $blockSize = 5;
                             echo "<div class='row'>";
                             for ($j = $i; $j < $i + $blockSize && $j < $totalSubC; $j++) {
                                 echo "
+                                
                                 <div class='col text-center'>
                                     <div class='col rounded'>
+                                        <a href='?action=products&category={$CategoryGet}&SubCat={$SubCategories[$j]['NSUBCATEGORIA']}' >
                                         <div class='category-circle'>
                                             <img src='Assets/Img/Category/SubCategory/{$CategoryGet}/{$SubCategories[$j]['NSUBCATEGORIA']}.png' alt='Subcategoría'>
                                         </div>
+                                        </a>
                                         <p class='category-text'>{$SubCategories[$j]['NSUBCATEGORIA']}</p>
                                     </div>
                                 </div>
@@ -130,84 +139,34 @@ $blockSize = 5;
                     </button>
                 </div>
             </div>
+            <!--seccion productos-->
+            <h5>Productos</h5>
+            <?php
+            for ($i = 0; $i < $totalProd; $i += $blockSizeProd) {
+                echo "<div class='row'>";
+                for ($j = $i; $j < $i + $blockSizeProd && $j < $totalProd; $j++) {
+                    echo "
+                                    <div class='col-md-4 mb-4'>
+                                        <div class='card'>
+                                            <img src='https://via.placeholder.com/150' class='card-img-top' alt='Producto 1'>
+                                            <div class='card-body text-center'>
+                                                <h5 class='card-title'>{$produ[$j]['NOMBREPROD']}</h5>
+                                                <p class='card-text'>{$produ[$j]['CANTMEDIDA']} {$produ[$j]['UNIDADMEDIDA']}</p>
+                                                <p class='card-text'>Q{$produ[$j]['PRECIO']}</p>
+                                                <a href='#' class='btn btn-primary'>añadir al carrito</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   ";
+                }
+                echo "</div>";
+            }
+            $SubCategoryGet = null;
+            ?>
+
 
             <!-- Sección de productos -->
-            <h5>Productos</h5>
-            <div class="row">
-                <!-- Producto 1 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 1</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Producto 2 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 2</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Producto 3 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 3</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Producto 4 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 4">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 4</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Producto 5 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 5">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 5</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Producto 6 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 6">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 6</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div> <!-- Fin de la columna de productos/subcategorías -->
     </div> <!-- Fin del row -->
 </div> <!-- Fin del container -->
