@@ -49,7 +49,7 @@ class Category
 
     }
 
-    public static function ShowSubCategory($subCat)
+    public static function ShowSubCategory($CategoryGet, $SubCat)
     {
         $conn = Conexion::conectar();
 
@@ -58,12 +58,25 @@ class Category
             echo "Error en la conexión a la base de datos";
             return [];
         }
-
-        $sql = "SELECT s.idSubcategoria, s.Nsubcategoria, c.Categoria
+        if (empty($SubCat)) {
+            $sql = "SELECT s.idSubcategoria, s.Nsubcategoria, c.Categoria
             FROM Subcategoria s
             JOIN CatProd c ON s.fkCategoria = c.idCatProd
-            WHERE c.Categoria = :subCat";  // Se usa :subCat sin comillas para bind
-
+            WHERE c.Categoria = :CategoryGet
+            AND (s.SubCategoriaP IS NULL OR s.SubCategoriaP = 0)
+            "
+            ;  // Se usa :subCat sin comillas para bind
+        }else{
+            $sql = "SELECT s.idSubcategoria, s.Nsubcategoria, c.Categoria
+            FROM Subcategoria s
+            JOIN CatProd c ON s.fkCategoria = c.idCatProd
+            WHERE s.SubCategoriaP IN (
+            SELECT idSubcategoria 
+            FROM Subcategoria 
+            WHERE Nsubcategoria = :SubCat
+  )
+            ";
+        }
         $result = oci_parse($conn, $sql);
 
         // Verifica el parseo de la consulta
@@ -73,8 +86,11 @@ class Category
             return [];
         }
 
-        // Bind de la variable $subCat
-        oci_bind_by_name($result, ':subCat', $subCat);
+        if (empty($SubCat)) {
+        oci_bind_by_name($result, ':CategoryGet', $CategoryGet);
+        }else {
+            oci_bind_by_name($result, ':SubCat', $SubCat);
+        }
 
         // Verifica la ejecución de la consulta
         if (!oci_execute($result)) {

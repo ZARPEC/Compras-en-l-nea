@@ -11,6 +11,7 @@ class LinkModel{ // clase para rediregir a las diferentes paginas con metodo get
             "login" => "View/account/login.php",
             "signUp" => "View/account/SignUp.php",
             "products" => "View/pages/ListProduct.php",
+            "ProductView" => "View/pages/ProductView.php",
             "CatMain" => "View/pages/CategoryMain.php",
             "conn" =>"View/account/conexion.php",
             default => "View/pages/error.php"

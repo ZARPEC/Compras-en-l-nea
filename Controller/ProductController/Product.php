@@ -19,5 +19,15 @@ class Product
         $Sub = ProductM::ShowProduct($CategoryGet, $SubCategoryGet, );
         return $Sub;
     }
+    public function ShowItem(){
+        if (!isset($_GET['idProduct'])) {
+            echo "<h3>Producto Inexistente</h3>";
+        }else{
+            $IdItem = $_GET['idProduct'];
+        }
+        $Item = ProductM::ShowItem($IdItem );
+        return $Item;
+
+    }
 
 }

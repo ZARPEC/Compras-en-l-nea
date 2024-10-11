@@ -72,6 +72,19 @@ $totalProd = count($produ);
         width: 20px;
         height: 20px;
     }
+
+    .hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-10px);
+        /* Eleva la tarjeta hacia arriba */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        /* Añade una sombra */
+        cursor: pointer;
+        /* Cambia el cursor a pointer para indicar que es clickeable */
+    }
 </style>
 <div class="container mt-5">
     <div class="row">
@@ -147,8 +160,9 @@ $totalProd = count($produ);
                 for ($j = $i; $j < $i + $blockSizeProd && $j < $totalProd; $j++) {
                     echo "
                                     <div class='col-md-4 mb-4'>
-                                        <div class='card'>
-                                            <img src='https://via.placeholder.com/150' class='card-img-top' alt='Producto 1'>
+                                    <a href='?action=ProductView&idProduct={$produ[$j]['IDPRODUCTO']}' class='card-link' style='text-decoration: none; color: inherit;'>
+                                        <div class='card hover-effect'>
+                                            <img src='Assets/Img/Category/SubCategory/{$CategoryGet}/Products/{$produ[$j]['NSUBCATEGORIA']}.png' class='card-img-top' alt='Producto 1'>
                                             <div class='card-body text-center'>
                                                 <h5 class='card-title'>{$produ[$j]['NOMBREPROD']}</h5>
                                                 <p class='card-text'>{$produ[$j]['CANTMEDIDA']} {$produ[$j]['UNIDADMEDIDA']}</p>
@@ -156,6 +170,7 @@ $totalProd = count($produ);
                                                 <a href='#' class='btn btn-primary'>añadir al carrito</a>
                                             </div>
                                         </div>
+                                    </a>
                                     </div>
                                    ";
                 }
