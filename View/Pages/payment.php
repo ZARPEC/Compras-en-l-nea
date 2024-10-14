@@ -41,6 +41,8 @@ $factura = new Factura;
 
     <!-- Formulario de Datos de Envío y Pago -->
     <form method="post" id="checkout-form">
+
+
         <!-- Datos de Envío -->
         <h4 class="mt-4">Datos de Envío</h4>
         <div class="mb-3">
@@ -109,7 +111,7 @@ $factura = new Factura;
 </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //$pay->payment();
+    $pay->payment();
 }
 
 ?>

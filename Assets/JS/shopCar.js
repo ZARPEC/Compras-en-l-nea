@@ -50,6 +50,7 @@ function mostrarCarrito() {
 
   document.getElementById("subtotal").textContent = `Q${subtotal.toFixed(2)}`;
   document.getElementById("total").textContent = `Q${total.toFixed(2)}`;
+  hiddenProduct();
 }
 
 // Función para actualizar la cantidad de un producto
@@ -67,8 +68,52 @@ function eliminarDelCarrito(index) {
 }
 
 function vaciarCarrito() {
-  sessionStorage.removeItem('carrito'); // Vaciar el carrito en sessionStorage
+  sessionStorage.removeItem("carrito"); // Vaciar el carrito en sessionStorage
 }
+
+
+// Función para agregar los productos como campos ocultos al formulario
+function hiddenProduct() {
+  const form = document.getElementById("checkout-form");
+
+  // Crear un div que encierre todos los campos ocultos
+  let hiddenFieldsDiv = document.getElementById('hidden-products-fields');
+
+    if (!hiddenFieldsDiv) {
+        // Si no existe, crear el div
+        hiddenFieldsDiv = document.createElement('div');
+        hiddenFieldsDiv.id = 'hidden-products-fields';  // Asignar el ID al div
+        form.appendChild(hiddenFieldsDiv);  // Agregar el div al formulario
+    }
+  // Limpiar el div en caso de que ya haya sido llenado anteriormente
+  hiddenFieldsDiv.innerHTML = "";
+
+  carrito.forEach((item, index) => {
+    // Campos ocultos para cada producto
+    let inputIdProducto = document.createElement("input");
+    inputIdProducto.type = "hidden";
+    inputIdProducto.name = `productos[${index}][id]`;
+    inputIdProducto.value = item.id;
+    hiddenFieldsDiv.appendChild(inputIdProducto);
+
+    let inputCantidad = document.createElement("input");
+    inputCantidad.type = "hidden";
+    inputCantidad.name = `productos[${index}][cantidad]`;
+    inputCantidad.value = item.cantidad;
+    hiddenFieldsDiv.appendChild(inputCantidad);
+
+    let inputPrecioUnitario = document.createElement("input");
+    inputPrecioUnitario.type = "hidden";
+    inputPrecioUnitario.name = `productos[${index}][precio]`;
+    inputPrecioUnitario.value = item.precio;
+    hiddenFieldsDiv.appendChild(inputPrecioUnitario);
+  });
+
+  // Agregar el div con los campos ocultos al formulario
+  form.appendChild(hiddenFieldsDiv);
+}
+
+
+
 // Cargar el carrito al cargar la página
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
-

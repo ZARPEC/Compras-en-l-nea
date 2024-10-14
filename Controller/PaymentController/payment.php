@@ -11,16 +11,26 @@ class Payment
     public function payment()
     {
         if (!empty($_POST['numeroTarjeta']) && !empty($_POST['vencimiento']) && !empty($_POST['cvv'])) {
+            // instancia a cliente y factura
             $AddCliente = new ClienteC;
             $addfactura = new Factura;
+            // datos del formulario de tarjeta
             $nombre = $_POST['nombre'];
             $numeroTarjeta = $_POST['numeroTarjeta'];
             $vencimiento = $_POST['vencimiento'];
             $cvv = $_POST['cvv'];
+            // datos del formulario del cliente 
             $nombreCl = $_POST['nombreCl'];
             $apellido = $_POST['apellido'];
             $tel = $_POST['telefono'];
+            // forma de pago para la factura
             $MetodoPago = $_POST['metodoPago'];
+            // datos de los productos dentro del carrito para los detalles de la factura 
+            if (isset($_POST['productos'])) {
+                $productos = $_POST['productos'];
+
+                // Recorrer todos los productos
+            }
 
             // URL del Servlet
             $url = 'http://localhost:8090/Proyecto/procesarPago';
@@ -57,9 +67,13 @@ class Payment
                 $AddCliente->inCliente($nombreCl, $apellido, $tel);
                 if ($AddCliente == true) {
                     $addfactura->inFactura($MetodoPago);
+                    if ($addfactura == true) {
+                        $addfactura->indetalles($productos);
+                    }
                 }
+                $tarjetaEnmascarada = '**** **** **** ' . substr($numeroTarjeta, -4);
 
-                header("Location: ?action=paymentsuces");
+                header("Location: ?action=paymentsuces&tarjeta=' . $tarjetaEnmascarada" );
             } else {
                 echo "Pago fallido. " . (isset($jsonResponse['error']) ? $jsonResponse['error'] : "Verifica la información.");
             }
