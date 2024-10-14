@@ -15,8 +15,9 @@ ob_start();
     <title>MiniSuper</title>
     <link rel="stylesheet" href="Assets/Css/NavBarStyle.css">
     <link href="Assets/Css/bootstrap.min.css" rel="stylesheet">
-
     <script src="Assets/JS/bootstrap.bundle.min.js"></script>
+    <script src="Assets/JS/shopCar.js"></script>
+    <script src="https://kit.fontawesome.com/19795a1502.js" crossorigin="anonymous"></script>
 </head>
 
 <?php

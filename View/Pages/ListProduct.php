@@ -167,7 +167,7 @@ $totalProd = count($produ);
                                                 <h5 class='card-title'>{$produ[$j]['NOMBREPROD']}</h5>
                                                 <p class='card-text'>{$produ[$j]['CANTMEDIDA']} {$produ[$j]['UNIDADMEDIDA']}</p>
                                                 <p class='card-text'>Q{$produ[$j]['PRECIO']}</p>
-                                                <a href='#' class='btn btn-primary'>añadir al carrito</a>
+                                                <a href='#' class='btn btn-primary'onclick='agregarAlCarrito({\"id\": {$produ[$j]['IDPRODUCTO']},precio: {$produ[$j]['PRECIO']},\"nombre\": \"{$produ[$j]['NOMBREPROD']}\", \"cantidad\": 1});'>añadir al carrito</a>
                                             </div>
                                         </div>
                                     </a>

@@ -30,7 +30,7 @@ $produ = $controllerProd->ShowItem();
                         </div>
 
                         <!-- Botón Añadir al carrito -->
-                        <button class='btn btn-warning btn-lg w-100 mt-4'>Añadir al carrito</button>
+                        <button class='btn btn-warning btn-lg w-100 mt-4' onclick='agregarAlCarrito({\"id\": {$item['IDPRODUCTO']},precio: {$item['PRECIO']},\"nombre\": \"{$item['NOMBREPROD']}\", \"cantidad\": 1});'>Añadir al carrito</button>
                     </div>
                      ";
             }

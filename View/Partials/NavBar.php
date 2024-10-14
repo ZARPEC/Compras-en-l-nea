@@ -87,6 +87,9 @@ $Cont = 0;
                     <li class="nav-item ">
                         <a class="nav-link" href="?action=login">Iniciar sesion</a>
                     </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" href="?action=ShoppingCart"><i class="fa-solid fa-cart-plus fa-2xl"></i></a>
+                    </li>
                 </ul>
             </div>
         </nav>
