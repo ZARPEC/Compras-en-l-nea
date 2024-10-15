@@ -23,8 +23,10 @@ class Factura
     {
         if (isset($_SESSION['idCliente'])) {
             $idCliente = $_SESSION['idCliente'];
-        } else if (isset($_POST['idFactura'])) {
-            $idCliente = $_POST['idFactura'];
+            $idFactura = 0;
+        } else if (isset($_GET['idFactura'])) {
+            $idFactura = $_GET['idFactura'];
+            $idCliente = 0;
         } else {
             $idFactura = FacturaM::MaxIdFactura();
             $idCliente = 0;
@@ -34,6 +36,7 @@ class Factura
         return $fact;
     }
 }
+
 /*
 SELECT 
     C.idCliente,                                    -- ID del cliente

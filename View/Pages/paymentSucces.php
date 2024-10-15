@@ -15,9 +15,7 @@ if (!empty($facturaDetalles)) {
         $subtotal = $detalle['CANTIDAD'] * $detalle['PRECIOPRODUCTO']; // Calculamos el subtotal
         $totalPagado += $subtotal; // Sumamos el subtotal al total pagado
     }
-} else {
-    echo "algo malooooo";
-}
+} 
 
 
 ?>

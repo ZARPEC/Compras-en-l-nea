@@ -43,45 +43,24 @@ $Cont = 0;
                         </ul>
                     </li>
                     <li class="nav-item dd">
-                        <a class="nav-link" href="?action=orders">pedidos</a>
+                        <a class="nav-link" href="?action=search">pedidos</a>
                     </li>
                     <li class="nav-item dd">
                         <a class="nav-link" href="#">elemento </a>
                         <ul class="list-unstyled dropdownMenu">
-                            <li>
-                                <a href="play-based-learning.html">Play-Based Learning</a>
-                            </li>
-                            <li>
-                                <a href="physical-literacy.html">Physical Literacy</a>
-                            </li>
-                            <li>
-                                <a href="steam-curriculum.html">Steam Curriculum</a>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item dd">
                         <a class="nav-link" href="#"> elemento </a>
                         <ul class="list-unstyled dropdownMenu">
-                            <li>
-                                <a href="nutrition.html">Nutrition</a>
-                            </li>
-                            <li>
-                                <a href="parent-reviews.html">Parent Reviews</a>
-                            </li>
-                            <li>
-                                <a href="enrolment.html">Enrolment</a>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item dd">
                         <a class="nav-link" href="#">elemento</a>
                         <ul class="list-unstyled dropdownMenu">
-                            <li>
-                                <a href="bhnM-mississauga.html">BH‘n’M - Mississauga</a>
-                            </li>
-                            <li>
-                                <a href="bhnm-brampton.html">BH‘n’M - Brampton</a>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item ">

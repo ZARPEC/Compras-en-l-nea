@@ -15,9 +15,11 @@ class LinkModel{ // clase para rediregir a las diferentes paginas con metodo get
             "ShoppingCart" => "View/pages/ShopCar.php",
             "payment" => "View/pages/payment.php",
             "paymentsuces" => "View/pages/PaymentSucces.php",
+            "search" => "View/pages/searchP.php",
             "pedidos" => "View/pages/Pedidos.php",
             "CatMain" => "View/pages/CategoryMain.php",
             "conn" =>"View/account/conexion.php",
+
             default => "View/pages/error.php"
 
         };
