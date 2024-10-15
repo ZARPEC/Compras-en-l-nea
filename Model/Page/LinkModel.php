@@ -19,7 +19,6 @@ class LinkModel{ // clase para rediregir a las diferentes paginas con metodo get
             "pedidos" => "View/pages/Pedidos.php",
             "CatMain" => "View/pages/CategoryMain.php",
             "conn" =>"View/account/conexion.php",
-
             default => "View/pages/error.php"
 
         };
